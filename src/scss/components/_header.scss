@@ -1,0 +1,39 @@
+.header {
+  margin-top: 157px;
+  margin-bottom: 100px;
+
+  &__main {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    &-input {
+      text-align: center;
+      border: none;
+      color: #fff;
+      background-color: #819F9E;
+      width: 550px;
+      height: 58px;
+      margin-right: 23px;
+      border-radius: 30px;
+      font-size: 32px;
+      line-height: 38px;
+
+      &::placeholder {
+        color: #fff;
+      }
+    }
+
+    &-img {
+      width: 67px;
+      height: 67px;
+      cursor: pointer;
+      margin-top: -5px;
+
+      &:hover {
+        opacity: 0.5;
+        transition: opacity 0.3s ease-in-out;
+      }
+    }
+  }
+}
