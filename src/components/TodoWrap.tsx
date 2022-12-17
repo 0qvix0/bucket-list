@@ -33,22 +33,13 @@ const TodoWrap = () => {
     }
   }
 
-  const onClickComplete = async (completedId: string) => {
-  //   onClickRemove(completedId)
-  //   try {
-  //     await axios.post(`https://6395e89b90ac47c680775c7d.mockapi.io/completed-deeds`, completedId)
-  //   } catch (error) {
-  //     alert('ошибка при добавлении в выполненные дела')
-  //   }
-  }
-
   return (
     <div className="list__main-block">
       <div className="list__main-block-title">Список дел:</div>
       <ul className="list__main-block-ul">
         {job.map((obj: any) => (
           <li className="list__main-block-ul-li" key={obj.id}>
-            <Todo onClickComplete={onClickComplete} onClickRemove={onClickRemove} title={obj.title} id={obj.id} />
+            <Todo onClickRemove={onClickRemove} title={obj.title} id={obj.id} />
           </li>
         ))}
       </ul>

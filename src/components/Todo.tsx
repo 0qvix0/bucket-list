@@ -8,15 +8,14 @@ type DeedsProps = {
   id: string,
   title: string,
   onClickRemove: any,
-  onClickComplete: any,
 }
 
-const Deeds: React.FC<DeedsProps> = ({ onClickComplete, onClickRemove, title, id}) => {
+const Deeds: React.FC<DeedsProps> = ({ onClickRemove, title, id}) => {
   
   return (
     <>
       <p className="list__main-block-ul-li-text">{title}</p>
-      <img className="list__main-block-ul-li-consent img" onClick={() => onClickComplete(id)} src={consent} alt="consent" />
+      <img className="list__main-block-ul-li-consent img" src={consent} alt="consent" />
       <img className="list__main-block-ul-li-refusal img" onClick={() => onClickRemove(id)} src={refusal} alt="refusal" />
       <img className="list__main-block-ul-li-redact img" src={redact} alt="redact" />
     </>
