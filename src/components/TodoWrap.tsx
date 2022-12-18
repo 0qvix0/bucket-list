@@ -27,18 +27,19 @@ const TodoWrap = () => {
   const onClickRemove = async (deletedId: string) => {
     try {
       await axios.delete(`https://6395e89b90ac47c680775c7d.mockapi.io/deeds/${deletedId}`)
-      setJob(prev => prev.filter(item => Number(item.id) !== Number(deletedId)))
+      setJob(prev => prev.filter(item => item.id !== deletedId))
     } catch (error) {
       alert('ошибка при удалении дела')
     }
   }
+  
 
   return (
     <div className="list__main-block">
       <div className="list__main-block-title">Список дел:</div>
-      <ul className="list__main-block-ul">
-        {job.map((obj: any) => (
-          <li className="list__main-block-ul-li" key={obj.id}>
+      <ul className="list__main-block-list">
+        {job.map((obj: { id: string, title: string }) => (
+          <li className="list__main-block-list-item" key={obj.id}>
             <Todo onClickRemove={onClickRemove} title={obj.title} id={obj.id} />
           </li>
         ))}

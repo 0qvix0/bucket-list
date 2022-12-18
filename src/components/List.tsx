@@ -1,4 +1,3 @@
-import React from 'react';
 import CompleteTodoWrap from './CompleteTodoWrap';
 
 import TodoWrap from './TodoWrap';
@@ -6,11 +5,9 @@ import TodoWrap from './TodoWrap';
 const List = () => {
   return (
     <div className="list">
-      <div className="container">
-        <div className="list__main">
-          <TodoWrap />
-          <CompleteTodoWrap />
-        </div>
+      <div className="list__main">
+        <TodoWrap />
+        <CompleteTodoWrap />
       </div>
     </div>
   );

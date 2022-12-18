@@ -36,9 +36,9 @@ const CompleteTodoWrap = () => {
   return (
     <div className="list__main-block">
       <div className="list__main-block-title">Выполненные дела:</div>
-      <ul className="list__main-block-ul">
-      {job.map((obj: any) => (
-          <li className="list__main-block-ul-li done" key={obj.id}>
+      <ul className="list__main-block-list">
+      {job.map((obj: { id: string, title: string }) => (
+          <li className="list__main-block-list-item done" key={obj.id}>
             <CompleteTodo onClickRemove={onClickRemove} title={obj.title} id={obj.id} />
           </li>
         ))}

@@ -7,17 +7,17 @@ import redact from '../assets/img/redact.svg';
 type DeedsProps = {
   id: string,
   title: string,
-  onClickRemove: any,
+  onClickRemove: (id: string) => {},
 }
 
 const Deeds: React.FC<DeedsProps> = ({ onClickRemove, title, id}) => {
   
   return (
     <>
-      <p className="list__main-block-ul-li-text">{title}</p>
-      <img className="list__main-block-ul-li-consent img" src={consent} alt="consent" />
-      <img className="list__main-block-ul-li-refusal img" onClick={() => onClickRemove(id)} src={refusal} alt="refusal" />
-      <img className="list__main-block-ul-li-redact img" src={redact} alt="redact" />
+      <p className="list__main-block-list-item-text">{title}</p>
+      <img className="list__main-block-list-item-consent img" src={consent} alt="consent" />
+      <img className="list__main-block-list-item-refusal img" onClick={() => onClickRemove(id)} src={refusal} alt="refusal" />
+      <img className="list__main-block-list-item-redact img" src={redact} alt="redact" />
     </>
   );
 };
