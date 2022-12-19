@@ -15,7 +15,7 @@ const Header = () => {
       if (value === '') {
         alert('Заполните поле ввода!!!')
       } else {
-        const { data } = await axios.post(`https://6395e89b90ac47c680775c7d.mockapi.io/deeds`, {
+        const { data } = await axios.post(`https://6395e89b90ac47c680775c7d.mockapi.io/todo`, {
           title: value,
         });
         inputRef.current.value = '';

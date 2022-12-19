@@ -1,15 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 
+import { TodoItem } from '../redux/types'
+
 import Todo from './Todo';
+import InputTodo from './InputTodo';
 
 const TodoWrap = () => {
   const [job, setJob] = React.useState([]);
+  const [isEdit, setIsEdit] = React.useState(false)
 
   React.useEffect(() => {
-    async function fetchDeeds() {
+    async function fetchTodo() {
       try {
-        const { data } = await axios.get('https://6395e89b90ac47c680775c7d.mockapi.io/deeds');
+        const { data } = await axios.get('https://6395e89b90ac47c680775c7d.mockapi.io/todo');
 
         setJob(data);
       } catch (error) {
@@ -17,7 +21,7 @@ const TodoWrap = () => {
       }
     }
 
-    fetchDeeds();
+    fetchTodo();
   }, []);
 
   if (!job) {
@@ -26,21 +30,46 @@ const TodoWrap = () => {
 
   const onClickRemove = async (deletedId: string) => {
     try {
-      await axios.delete(`https://6395e89b90ac47c680775c7d.mockapi.io/deeds/${deletedId}`)
+      await axios.delete(`https://6395e89b90ac47c680775c7d.mockapi.io/todo/${deletedId}`)
       setJob(prev => prev.filter(item => item.id !== deletedId))
     } catch (error) {
       alert('ошибка при удалении дела')
     }
   }
   
+  const onClickDone = async (doneId: string, doneTitle: string) => {
+    try {
+      await axios.delete(`https://6395e89b90ac47c680775c7d.mockapi.io/todo/${doneId}`)
+      await axios.post(`https://6395e89b90ac47c680775c7d.mockapi.io/completed-todo`, {
+          title: doneTitle,
+        });
+      setJob(prev => prev.filter(item => item.id !== doneId))
+    } catch (error) {
+      alert('ошибка при выполнении дела!')
+    }
+  }
+
+  const onClickEdit = () => {
+    console.log(isEdit);
+    if (isEdit === false) {
+      setIsEdit(true)
+    } else {
+      setIsEdit(false)
+    }
+    console.log(isEdit);
+  }
 
   return (
     <div className="list__main-block">
       <div className="list__main-block-title">Список дел:</div>
       <ul className="list__main-block-list">
-        {job.map((obj: { id: string, title: string }) => (
+        {job.map((obj: TodoItem) => isEdit===false ? (
           <li className="list__main-block-list-item" key={obj.id}>
-            <Todo onClickRemove={onClickRemove} title={obj.title} id={obj.id} />
+            <Todo onClickEdit={onClickEdit} onClickDone={onClickDone} onClickRemove={onClickRemove} title={obj.title} id={obj.id} />
+          </li>
+        ):(
+          <li className="list__main-block-list-item" key={obj.id}>
+            <InputTodo onClickEdit={onClickEdit} title={obj.title} id={obj.id} />
           </li>
         ))}
       </ul>

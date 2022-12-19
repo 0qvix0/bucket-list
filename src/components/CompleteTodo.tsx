@@ -2,13 +2,13 @@ import React from 'react';
 
 import refusal from '../assets/img/refusal.svg';
 
-type DeedsProps = {
-  title: string;
-  id: string;
-  onClickRemove: (id: string) => {};
-};
+type TodoProps = {
+  id: string,
+  title: string,
+  onClickRemove: (id: string) => {},
+}
 
-const DoneDeeds: React.FC<DeedsProps> = ({ onClickRemove, title, id }) => {
+const CompleteTodo: React.FC<TodoProps> = ({ onClickRemove, title, id }) => {
   return (
     <>
       <p className="list__main-block-list-item-text">{title}</p>
@@ -22,4 +22,4 @@ const DoneDeeds: React.FC<DeedsProps> = ({ onClickRemove, title, id }) => {
   );
 };
 
-export default DoneDeeds;
+export default CompleteTodo;
