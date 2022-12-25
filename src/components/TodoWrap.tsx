@@ -4,11 +4,9 @@ import axios from 'axios';
 import { TodoItem } from '../redux/types'
 
 import Todo from './Todo';
-import InputTodo from './InputTodo';
 
 const TodoWrap = () => {
   const [job, setJob] = React.useState([]);
-  const [isEdit, setIsEdit] = React.useState(false)
 
   React.useEffect(() => {
     async function fetchTodo() {
@@ -49,28 +47,12 @@ const TodoWrap = () => {
     }
   }
 
-  const onClickEdit = () => {
-    console.log(isEdit);
-    if (isEdit === false) {
-      setIsEdit(true)
-    } else {
-      setIsEdit(false)
-    }
-    console.log(isEdit);
-  }
-
   return (
     <div className="list__main-block">
       <div className="list__main-block-title">Список дел:</div>
       <ul className="list__main-block-list">
-        {job.map((obj: TodoItem) => isEdit===false ? (
-          <li className="list__main-block-list-item" key={obj.id}>
-            <Todo onClickEdit={onClickEdit} onClickDone={onClickDone} onClickRemove={onClickRemove} title={obj.title} id={obj.id} />
-          </li>
-        ):(
-          <li className="list__main-block-list-item" key={obj.id}>
-            <InputTodo onClickEdit={onClickEdit} title={obj.title} id={obj.id} />
-          </li>
+        {job.map((obj: TodoItem) => (
+          <Todo key={obj.id} onClickDone={onClickDone} onClickRemove={onClickRemove} title={obj.title} id={obj.id} />
         ))}
       </ul>
     </div>
